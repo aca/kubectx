@@ -18,6 +18,7 @@ import (
 
 	"k8s.io/client-go/kubernetes"
 	_ "k8s.io/client-go/plugin/pkg/client/auth"
+	_ "k8s.io/client-go/plugin/pkg/client/auth/oidc"
 	"k8s.io/client-go/tools/clientcmd"
 )
 
@@ -98,7 +99,7 @@ func kubens(query string) (err error) {
 		return err
 	}
 
-	for _, item := range namespaces.Items{
+	for _, item := range namespaces.Items {
 		if item.ObjectMeta.Name == query {
 			return modifyConfig(query)
 		}
